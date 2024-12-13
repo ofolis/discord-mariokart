@@ -20,7 +20,7 @@ export const command: Command = {
     const randomCup: Cup = cupList[Math.floor(cupList.length * Math.random())];
     const randomTrack: Track = randomCup.tracks[Math.floor(randomCup.tracks.length * Math.random())];
     const contentLines: string[] = [
-      `**Cup:** ${randomCup.name} \`[${randomCup.row},${randomCup.column}]\``,
+      `**Cup:** ${randomCup.name} \`[${randomCup.row.toString()},${randomCup.column.toString()}]\``,
       `**Track:** ${randomTrack.name}`,
     ];
     await interaction.reply({

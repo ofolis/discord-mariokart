@@ -26,7 +26,7 @@ export const command: Command = {
     const randomTires: Tires = tires[Math.floor(tires.length * Math.random())];
     const randomGlider: Glider = gliders[Math.floor(gliders.length * Math.random())];
     const contentLines: string[] = [
-      `**Character:** ${randomCharacter.name}${randomCharacter.variants === null ? "" : ` (${randomCharacter.variants[Math.floor(randomCharacter.variants.length * Math.random())]})`} \`[${randomCharacter.row},${randomCharacter.column}]\``,
+      `**Character:** ${randomCharacter.name}${randomCharacter.variants === null ? "" : ` (${randomCharacter.variants[Math.floor(randomCharacter.variants.length * Math.random())]})`} \`[${randomCharacter.row.toString()},${randomCharacter.column.toString()}]\``,
       `**Kart:** ${randomKart.name}`,
       `**Tires:** ${randomTires.name}`,
       `**Glider:** ${randomGlider.name}`,

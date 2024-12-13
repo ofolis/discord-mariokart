@@ -1,6 +1,6 @@
 import {
   SubCategory,
-} from "../enums";
+} from "../../enums";
 
 export type Track = {
   "subCategory": SubCategory | null;
