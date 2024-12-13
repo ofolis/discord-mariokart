@@ -1,6 +1,6 @@
-# discord-template
+# discord-mariokart
 
-A Discord bot template.
+A Discord bot that allows users to get random Mario Kart output.
 
 ## Setup
 
@@ -10,21 +10,21 @@ A Discord bot template.
    3. Set any desired aesthetic items in the **General Information** section.
    4. In the **General Information** section:
       1. **Save the application ID value for later.**
-         In the **Installation** section:
+   5. In the **Installation** section:
       1. Ensure that **Guild Install** is the only context method.
-      1. Disable the install link.
-   5. In the **OAuth2** section:
+      2. Disable the install link.
+   6. In the **OAuth2** section:
       1. Disable **Public Client**.
-   6. In the **Bot** section:
+   7. In the **Bot** section:
       1. Set any desired aesthetic items.
       2. Reset the token and **save the value for later**.
       3. Enable privileged gateway intents:
          - **Presence Intent**
          - **Server Memebers Intent**
          - **Message Content Intent**
-   7. Back in the **OAuth2** section:
+   8. Back in the **OAuth2** section:
       1. Create a guild install OAuth2 URL with only the `bot` scope.
-   8. Open the generated URL and install the bot in your Discord server.
+   9. Open the generated URL and install the bot in your Discord server.
 2. Set up environment.
    1. Clone this repository.
    2. [Install Node Version Manager.](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)

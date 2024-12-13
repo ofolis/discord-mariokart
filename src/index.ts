@@ -5,14 +5,16 @@ import {
   Discord,
 } from "./discord";
 import {
-  Ping,
+  Racer,
+  Track,
 } from "./handlers/commands";
 import type {
   Command,
 } from "./types";
 
 const commands: Command[] = [
-  Ping,
+  Racer,
+  Track,
 ];
 
 function initializeApp(): void {
