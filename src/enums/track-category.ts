@@ -4,7 +4,7 @@ export enum TrackCategory {
   "GCN",
   "N64",
   "SNES",
-  "THREE_DS",
+  "THREEDS",
   "TOUR",
   "WII",
 };

@@ -3,12 +3,13 @@ import {
 } from "random-js";
 import {
   cups,
+  tracks,
 } from "../../constants/index";
 import type {
   DiscordCommandInteraction,
 } from "../../discord";
 import {
-  CupName,
+  TrackName,
 } from "../../enums";
 import {
   IO,
@@ -45,34 +46,34 @@ export const command: Command = {
     // Create random generator
     const random: Random = new Random();
     // Choose track
-    const trackCombinationPool: [CupName, number][] = Object.values(CupName).flatMap((cupName) =>
-      Array.from(
-        {
-          "length": 4,
-        },
-        (_, index) => [
-          cupName as CupName,
-          index,
-        ],
-      ));
-    characterNamePool = characterNamePool.filter((characterName) => !userState.characters.includes(characterName));
-    if (characterNamePool.length === 0) {
-      // Reset characters
-      userState.characters = [
+    const trackNames: TrackName[] = Object.values(TrackName).filter(value => typeof value === "number") as unknown as TrackName[];
+    let trackNamePool: TrackName[] = trackNames.filter((key) => !userState.tracks.includes(key));
+    if (trackNamePool.length === 0) {
+      // Reset tracks
+      userState.tracks = [
       ];
-      characterNamePool = Object.values(CharacterName);
+      trackNamePool = trackNames;
     }
-    const randomCharacterName: CharacterName = random.pick(characterNamePool);
-    const cupList: Cup[] = Object.values(cups);
-    const randomCup: Cup = random.pick(cupList);
-    const randomTrack: Track = random.pick(randomCup.tracks);
+    const randomTrackKey: TrackName = random.pick(trackNamePool);
+    // Send reply message
+    const randomTrack: Track = tracks[randomTrackKey];
+    if (!(randomTrack.cup in cups)) {
+      throw new Error(`Track "${randomTrackKey.toString()}" contained an invalid cup definition.`);
+    }
+    const randomTrackCup: Cup = cups[randomTrack.cup];
     const contentLines: string[] = [
-      `**Cup:** ${randomCup.name} \`[${randomCup.row.toString()},${randomCup.column.toString()}]\``,
+      `**Cup:** ${randomTrackCup.name} \`[${randomTrackCup.row.toString()},${randomTrackCup.column.toString()}]\``,
       `**Track:** ${randomTrack.name}`,
     ];
     await interaction.reply({
       "content": contentLines.join("\n"),
       "ephemeral": true,
     });
+    // Save data
+    userState.tracks.push(randomTrackKey);
+    IO.saveData(
+      interaction.user.id,
+      userState,
+    );
   },
 };

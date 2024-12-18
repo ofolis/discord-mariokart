@@ -1,8 +1,12 @@
 import type {
   DiscordCommandInteraction,
 } from "../../discord";
+import {
+  IO,
+} from "../../io";
 import type {
   Command,
+  UserState,
 } from "../../types/";
 
 export const command: Command = {
@@ -11,6 +15,30 @@ export const command: Command = {
   "isGlobal": false,
   "isGuild": true,
   "execute": async(interaction: DiscordCommandInteraction): Promise<void> => {
-    await interaction.reply("FOO");
+    // Send reply message
+    const contentLines: string[] = [
+      "Your history has been reset.",
+    ];
+    await interaction.reply({
+      "content": contentLines.join("\n"),
+      "ephemeral": true,
+    });
+    // Save empty data
+    const userState: UserState = {
+      "characters": [
+      ],
+      "karts": [
+      ],
+      "gliders": [
+      ],
+      "tires": [
+      ],
+      "tracks": [
+      ],
+    };
+    IO.saveData(
+      interaction.user.id,
+      userState,
+    );
   },
 };

@@ -12,7 +12,6 @@ import type {
 } from "../../discord";
 import {
   CharacterName,
-  CupName,
   GliderName,
   KartName,
   TireName,
@@ -54,50 +53,50 @@ export const command: Command = {
     // Create random generator
     const random: Random = new Random();
     // Choose character
-    let characterNamePool: CharacterName[] = Object.values(CharacterName) as CharacterName[];
-    characterNamePool = characterNamePool.filter((characterName) => !userState.characters.includes(characterName));
-    if (characterNamePool.length === 0) {
+    const characterKeys: CharacterName[] = Object.values(CharacterName).filter(value => typeof value === "number") as unknown as CharacterName[];
+    let characterKeyPool: CharacterName[] = characterKeys.filter((key) => !userState.characters.includes(key));
+    if (characterKeyPool.length === 0) {
       // Reset characters
       userState.characters = [
       ];
-      characterNamePool = Object.values(CharacterName) as CharacterName[];
+      characterKeyPool = characterKeys;
     }
-    const randomCharacterName: CharacterName = random.pick(characterNamePool);
+    const randomCharacterKey: CharacterName = random.pick(characterKeyPool);
     // Choose kart
-    let kartNamePool: KartName[] = Object.values(KartName) as KartName[];
-    kartNamePool = kartNamePool.filter((kartName) => !userState.karts.includes(kartName));
-    if (kartNamePool.length === 0) {
+    const kartKeys: KartName[] = Object.values(KartName).filter(value => typeof value === "number") as unknown as KartName[];
+    let kartKeyPool: KartName[] = kartKeys.filter((key) => !userState.karts.includes(key));
+    if (kartKeyPool.length === 0) {
       // Reset karts
       userState.karts = [
       ];
-      kartNamePool = Object.values(KartName) as KartName[];
+      kartKeyPool = kartKeys;
     }
-    const randomKartName: KartName = random.pick(kartNamePool);
+    const randomKartKey: KartName = random.pick(kartKeyPool);
     // Choose tire
-    let tireNamePool: TireName[] = Object.values(TireName) as TireName[];
-    tireNamePool = tireNamePool.filter((tireName) => !userState.tires.includes(tireName));
-    if (tireNamePool.length === 0) {
+    const tireKeys: TireName[] = Object.values(TireName).filter(value => typeof value === "number") as unknown as TireName[];
+    let tireKeyPool: TireName[] = tireKeys.filter((key) => !userState.tires.includes(key));
+    if (tireKeyPool.length === 0) {
       // Reset tires
       userState.tires = [
       ];
-      tireNamePool = Object.values(TireName) as TireName[];
+      tireKeyPool = tireKeys;
     }
-    const randomTireName: TireName = random.pick(tireNamePool);
+    const randomTireKey: TireName = random.pick(tireKeyPool);
     // Choose glider
-    let gliderNamePool: GliderName[] = Object.values(GliderName) as GliderName[];
-    gliderNamePool = gliderNamePool.filter((gliderName) => !userState.gliders.includes(gliderName));
-    if (gliderNamePool.length === 0) {
+    const gliderKeys: GliderName[] = Object.values(GliderName).filter(value => typeof value === "number") as unknown as GliderName[];
+    let gliderKeyPool: GliderName[] = gliderKeys.filter((key) => !userState.gliders.includes(key));
+    if (gliderKeyPool.length === 0) {
       // Reset gliders
       userState.gliders = [
       ];
-      gliderNamePool = Object.values(GliderName) as GliderName[];
+      gliderKeyPool = gliderKeys;
     }
-    const randomGliderName: GliderName = random.pick(gliderNamePool);
+    const randomGliderKey: GliderName = random.pick(gliderKeyPool);
     // Send reply message
-    const randomCharacter: Character = characters[randomCharacterName];
-    const randomKart: Kart = karts[randomKartName];
-    const randomTire: Tire = tires[randomTireName];
-    const randomGlider: Glider = gliders[randomGliderName];
+    const randomCharacter: Character = characters[randomCharacterKey];
+    const randomKart: Kart = karts[randomKartKey];
+    const randomTire: Tire = tires[randomTireKey];
+    const randomGlider: Glider = gliders[randomGliderKey];
     const contentLines: string[] = [
       `**Character:** ${randomCharacter.name}${randomCharacter.variants === null ? "" : ` (${randomCharacter.variants[Math.floor(randomCharacter.variants.length * Math.random())]})`} \`[${randomCharacter.row.toString()},${randomCharacter.column.toString()}]\``,
       `**Kart:** ${randomKart.name}`,
@@ -109,10 +108,10 @@ export const command: Command = {
       "ephemeral": true,
     });
     // Save data
-    userState.characters.push(randomCharacterName);
-    userState.karts.push(randomKartName);
-    userState.tires.push(randomTireName);
-    userState.gliders.push(randomGliderName);
+    userState.characters.push(randomCharacterKey);
+    userState.karts.push(randomKartKey);
+    userState.tires.push(randomTireKey);
+    userState.gliders.push(randomGliderKey);
     IO.saveData(
       interaction.user.id,
       userState,

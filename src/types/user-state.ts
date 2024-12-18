@@ -1,9 +1,9 @@
 import {
   CharacterName,
-  CupName,
   GliderName,
   KartName,
   TireName,
+  TrackName,
 } from "../enums";
 
 export type UserState = {
@@ -11,5 +11,5 @@ export type UserState = {
   "gliders": GliderName[];
   "karts": KartName[];
   "tires": TireName[];
-  "tracks": Record<CupName, number[]>;
+  "tracks": TrackName[];
 };
