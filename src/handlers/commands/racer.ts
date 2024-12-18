@@ -92,26 +92,35 @@ export const command: Command = {
       gliderKeyPool = gliderKeys;
     }
     const randomGliderKey: GliderName = random.pick(gliderKeyPool);
+    // Determine entity or wild
+    const randomCharacter: Character | null = random.die(100) === 1 ? null : characters[randomCharacterKey];
+    const randomKart: Kart | null = random.die(100) === 1 ? null : karts[randomKartKey];
+    const randomTire: Tire | null = random.die(100) === 1 ? null : tires[randomTireKey];
+    const randomGlider: Glider | null = random.die(100) === 1 ? null : gliders[randomGliderKey];
     // Send reply message
-    const randomCharacter: Character = characters[randomCharacterKey];
-    const randomKart: Kart = karts[randomKartKey];
-    const randomTire: Tire = tires[randomTireKey];
-    const randomGlider: Glider = gliders[randomGliderKey];
     const contentLines: string[] = [
-      `**Character:** ${randomCharacter.name}${randomCharacter.variants === null ? "" : ` (${randomCharacter.variants[Math.floor(randomCharacter.variants.length * Math.random())]})`} \`[${randomCharacter.row.toString()},${randomCharacter.column.toString()}]\``,
-      `**Kart:** ${randomKart.name}`,
-      `**Tires:** ${randomTire.name}`,
-      `**Glider:** ${randomGlider.name}`,
+      `**Character:** ${randomCharacter === null ? "WILD 🎉" : `${randomCharacter.name}${randomCharacter.variants === null ? "" : ` (${randomCharacter.variants[Math.floor(randomCharacter.variants.length * Math.random())]})`} \`[${randomCharacter.row.toString()},${randomCharacter.column.toString()}]\``}`,
+      `**Kart:** ${randomKart === null ? "WILD 🎉" : randomKart.name}`,
+      `**Tires:** ${randomTire === null ? "WILD 🎉" : randomTire.name}`,
+      `**Glider:** ${randomGlider === null ? "WILD 🎉" : randomGlider.name}`,
     ];
     await interaction.reply({
       "content": contentLines.join("\n"),
       "ephemeral": true,
     });
     // Save data
-    userState.characters.push(randomCharacterKey);
-    userState.karts.push(randomKartKey);
-    userState.tires.push(randomTireKey);
-    userState.gliders.push(randomGliderKey);
+    if (randomCharacter !== null) {
+      userState.characters.push(randomCharacterKey);
+    }
+    if (randomKart !== null) {
+      userState.karts.push(randomKartKey);
+    }
+    if (randomTire !== null) {
+      userState.tires.push(randomTireKey);
+    }
+    if (randomGlider !== null) {
+      userState.gliders.push(randomGliderKey);
+    }
     IO.saveData(
       interaction.user.id,
       userState,
