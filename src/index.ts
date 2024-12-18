@@ -6,6 +6,7 @@ import {
 } from "./discord";
 import {
   Racer,
+  Reset,
   Track,
 } from "./handlers/commands";
 import type {
@@ -14,6 +15,7 @@ import type {
 
 const commands: Command[] = [
   Racer,
+  Reset,
   Track,
 ];
 

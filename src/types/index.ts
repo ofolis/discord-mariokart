@@ -6,3 +6,6 @@ export type {
 export type {
   Saveable,
 } from "./saveable";
+export type {
+  UserState,
+} from "./user-state";

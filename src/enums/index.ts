@@ -1,9 +1,24 @@
 export {
+  CharacterName,
+} from "./character-name";
+export {
   CupName,
 } from "./cup-name";
+export {
+  GliderName,
+} from "./glider-name";
+export {
+  KartName,
+} from "./kart-name";
 export {
   KartType,
 } from "./kart-type";
 export {
-  SubCategory,
-} from "./sub-category";
+  TireName,
+} from "./tire-name";
+export {
+  TrackCategory,
+} from "./track-category";
+export {
+  TrackName,
+} from "./track-name";

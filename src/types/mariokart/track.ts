@@ -1,8 +1,10 @@
 import {
-  SubCategory,
+  CupName,
+  TrackCategory,
 } from "../../enums";
 
 export type Track = {
-  "subCategory": SubCategory | null;
+  "category": TrackCategory | null;
+  "cup": CupName;
   "name": string;
 };

@@ -1,4 +1,4 @@
-export enum SubCategory {
+export enum TrackCategory {
   "DS",
   "GBA",
   "GCN",

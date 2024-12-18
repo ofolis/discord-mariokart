@@ -11,8 +11,8 @@ export type {
   Kart,
 } from "./kart";
 export type {
-  Tires,
-} from "./tires";
+  Tire,
+} from "./tire";
 export type {
   Track,
 } from "./track";
