@@ -1,10 +1,7 @@
-import {
-  CupName,
-  TrackCategory,
-} from "../../enums";
+import { CupName, TrackCategory } from "../../enums";
 
 export type Track = {
-  "category": TrackCategory | null;
-  "cup": CupName;
-  "name": string;
+  category: TrackCategory | null;
+  cup: CupName;
+  name: string;
 };

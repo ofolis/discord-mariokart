@@ -1,3 +1,3 @@
 export type Tire = {
-  "name": string;
+  name: string;
 };

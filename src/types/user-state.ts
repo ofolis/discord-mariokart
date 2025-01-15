@@ -7,9 +7,9 @@ import {
 } from "../enums";
 
 export type UserState = {
-  "characters": CharacterName[];
-  "gliders": GliderName[];
-  "karts": KartName[];
-  "tires": TireName[];
-  "tracks": TrackName[];
+  characters: CharacterName[];
+  gliders: GliderName[];
+  karts: KartName[];
+  tires: TireName[];
+  tracks: TrackName[];
 };

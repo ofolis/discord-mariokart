@@ -1,3 +1,3 @@
 export type Glider = {
-  "name": string;
+  name: string;
 };

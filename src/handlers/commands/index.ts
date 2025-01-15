@@ -1,9 +1,3 @@
-export {
-  command as Racer,
-} from "./racer";
-export {
-  command as Reset,
-} from "./reset";
-export {
-  command as Track,
-} from "./track";
+export { RacerCommand } from "./racer-command";
+export { ResetCommand } from "./reset-command";
+export { TrackCommand } from "./track-command";

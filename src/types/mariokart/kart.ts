@@ -1,8 +1,6 @@
-import {
-  KartType,
-} from "../../enums";
+import { KartType } from "../../enums";
 
 export type Kart = {
-  "name": string;
-  "type": KartType;
+  name: string;
+  type: KartType;
 };
