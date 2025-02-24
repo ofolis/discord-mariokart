@@ -5,7 +5,8 @@ import type { DiscordCommandInteraction } from "../../core/discord";
 import { CharacterName, GliderName, KartName, TireName } from "../../enums";
 import type { Character, Glider, Kart, Tire, UserState } from "../../types";
 
-export class RacerCommand implements Command {
+// TODO: revise this command to be compatible with new template
+export class Racer implements Command {
   public readonly description = "Generate a random racer.";
 
   public readonly isGlobal = false;
@@ -15,7 +16,7 @@ export class RacerCommand implements Command {
   public readonly name = "racer";
 
   private static chooseRandomItem<T>(keys: T[], userItems: T[]): T {
-    let keyPool: T[] = keys.filter((key) => !userItems.includes(key));
+    let keyPool: T[] = keys.filter(key => !userItems.includes(key));
     if (keyPool.length === 0) {
       userItems.length = 0; // Reset items
       keyPool = keys;
@@ -25,9 +26,7 @@ export class RacerCommand implements Command {
 
   public async execute(interaction: DiscordCommandInteraction): Promise<void> {
     // Load or create data
-    let userState: UserState | null = IO.loadData(
-      interaction.user.id,
-    ) as UserState | null;
+    let userState: UserState | null = IO.loadData(interaction.user.id);
     if (userState === null) {
       userState = {
         characters: [],
@@ -39,7 +38,7 @@ export class RacerCommand implements Command {
     }
     // Choose character
     const characterKeys: CharacterName[] = Object.values(CharacterName).filter(
-      (value) => typeof value === "number",
+      value => typeof value === "number",
     ) as unknown as CharacterName[];
     const randomCharacterKey: CharacterName = RacerCommand.chooseRandomItem(
       characterKeys,
@@ -47,7 +46,7 @@ export class RacerCommand implements Command {
     );
     // Choose kart
     const kartKeys: KartName[] = Object.values(KartName).filter(
-      (value) => typeof value === "number",
+      value => typeof value === "number",
     ) as unknown as KartName[];
     const randomKartKey: KartName = RacerCommand.chooseRandomItem(
       kartKeys,
@@ -55,7 +54,7 @@ export class RacerCommand implements Command {
     );
     // Choose tire
     const tireKeys: TireName[] = Object.values(TireName).filter(
-      (value) => typeof value === "number",
+      value => typeof value === "number",
     ) as unknown as TireName[];
     const randomTireKey: TireName = RacerCommand.chooseRandomItem(
       tireKeys,
@@ -63,7 +62,7 @@ export class RacerCommand implements Command {
     );
     // Choose glider
     const gliderKeys: GliderName[] = Object.values(GliderName).filter(
-      (value) => typeof value === "number",
+      value => typeof value === "number",
     ) as unknown as GliderName[];
     const randomGliderKey: GliderName = RacerCommand.chooseRandomItem(
       gliderKeys,

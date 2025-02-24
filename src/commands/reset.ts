@@ -2,7 +2,8 @@ import { Command, Discord, IO, Utils } from "../../core";
 import type { DiscordCommandInteraction } from "../../core/discord";
 import type { UserState } from "../../types";
 
-export class ResetCommand implements Command {
+// TODO: revise this command to be compatible with new template
+export class Reset implements Command {
   public readonly description = "Reset your history.";
 
   public readonly isGlobal = false;

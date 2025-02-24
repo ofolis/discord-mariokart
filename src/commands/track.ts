@@ -5,17 +5,19 @@ import type { DiscordCommandInteraction } from "../../core/discord";
 import { TrackName } from "../../enums";
 import type { Cup, Track, UserState } from "../../types";
 
-export class TrackCommand implements Command {
+// TODO: revise this command to be compatible with new template
+export class Track implements Command {
   public readonly description = "Generate a random track.";
+
   public readonly isGlobal = false;
+
   public readonly isGuild = true;
+
   public readonly name = "track";
 
   public async execute(interaction: DiscordCommandInteraction): Promise<void> {
     // Load or create data
-    let userState: UserState | null = IO.loadData(
-      interaction.user.id,
-    ) as UserState | null;
+    let userState: UserState | null = IO.loadData(interaction.user.id);
     if (userState === null) {
       userState = {
         characters: [],
@@ -29,10 +31,10 @@ export class TrackCommand implements Command {
     const random: Random = new Random();
     // Choose track
     const trackNames: TrackName[] = Object.values(TrackName).filter(
-      (value) => typeof value === "number",
+      value => typeof value === "number",
     ) as unknown as TrackName[];
     let trackNamePool: TrackName[] = trackNames.filter(
-      (key) => !userState.tracks.includes(key),
+      key => !userState.tracks.includes(key),
     );
     if (trackNamePool.length === 0) {
       userState.tracks = [];
