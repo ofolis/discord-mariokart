@@ -1,7 +1,7 @@
 import { CharacterName } from "../../enums";
 import { Character } from "../../types";
 
-export const characters: Record<CharacterName, Character> = {
+export const CHARACTERS: Record<CharacterName, Character> = {
   [CharacterName.MARIO]: {
     column: 1,
     name: "Mario",

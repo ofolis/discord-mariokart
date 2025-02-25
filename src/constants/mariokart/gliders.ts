@@ -1,7 +1,7 @@
 import { GliderName } from "../../enums";
 import { Glider } from "../../types";
 
-export const gliders: Record<GliderName, Glider> = {
+export const GLIDERS: Record<GliderName, Glider> = {
   [GliderName.SUPER_GLIDER]: {
     name: "Super Glider",
   },
