@@ -1,6 +1,6 @@
-export { characters } from "./characters";
-export { cups } from "./cups";
-export { gliders } from "./gliders";
-export { karts } from "./karts";
-export { tires } from "./tires";
-export { tracks } from "./tracks";
+export { CHARACTERS } from "./characters";
+export { CUPS } from "./cups";
+export { GLIDERS } from "./gliders";
+export { KARTS } from "./karts";
+export { TIRES } from "./tires";
+export { TRACKS } from "./tracks";

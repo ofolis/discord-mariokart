@@ -1,7 +1,7 @@
 import { CupName, TrackCategory, TrackName } from "../../enums";
 import { Track } from "../../types";
 
-export const tracks: Record<TrackName, Track> = {
+export const TRACKS: Record<TrackName, Track> = {
   [TrackName.MARIO_KART_STADIUM]: {
     category: null,
     cup: CupName.MUSHROOM,

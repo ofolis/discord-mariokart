@@ -77,13 +77,13 @@ export class ChannelState implements Saveable {
     );
   }
 
-  public getAvailableTracks(track: TrackName): TrackName[] {
+  public getAvailableTracks(): TrackName[] {
     const availableTracks: TrackName[] = Object.values(TrackName).filter(
       (track: TrackName) => this.__usedTracks.indexOf(track) === -1,
     );
     if (availableTracks.length === 0) {
       this.__usedTracks = [];
-      return this.getAvailableTracks(track); // Refetch available tracks if all are used
+      return this.getAvailableTracks(); // Refetch available tracks if all are used
     }
     return availableTracks;
   }
@@ -143,6 +143,18 @@ export class ChannelState implements Saveable {
       return;
     }
     this.__usedTracks.push(track);
+  }
+
+  public resetLoggedEntitiesForUser(userId: string): boolean {
+    if (!(userId in this.__userStates)) {
+      return false;
+    }
+    this.__userStates[userId].resetLoggedEntities();
+    return true;
+  }
+
+  public resetLoggedTracks(): void {
+    this.__usedTracks = [];
   }
 
   public toJson(): ChannelStateJson {

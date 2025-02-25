@@ -1,7 +1,7 @@
 import { KartName, KartType } from "../../enums";
 import { Kart } from "../../types";
 
-export const karts: Record<KartName, Kart> = {
+export const KARTS: Record<KartName, Kart> = {
   // Karts
   [KartName.STANDARD_KART]: {
     name: "Standard Kart",

@@ -78,7 +78,7 @@ export class UserState implements Saveable {
     this.__logUsedEntity(tire, this.__usedTires);
   }
 
-  public resetLoggedEntites(): void {
+  public resetLoggedEntities(): void {
     this.__usedCharacters = [];
     this.__usedGliders = [];
     this.__usedKarts = [];

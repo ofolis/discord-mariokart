@@ -1,7 +1,7 @@
 import { TireName } from "../../enums";
 import { Tire } from "../../types";
 
-export const tires: Record<TireName, Tire> = {
+export const TIRES: Record<TireName, Tire> = {
   [TireName.STANDARD]: {
     name: "Standard",
   },

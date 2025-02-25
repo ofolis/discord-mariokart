@@ -1,7 +1,7 @@
 import { CupName } from "../../enums";
 import { Cup } from "../../types";
 
-export const cups: Record<CupName, Cup> = {
+export const CUPS: Record<CupName, Cup> = {
   [CupName.MUSHROOM]: {
     column: 1,
     isDlc: false,
