@@ -1,5 +1,7 @@
+import { ICONS } from "../constants";
 import { DataController } from "../controllers";
 import { ChannelCommandMessage, Command, CommandOption } from "../core";
+import { IconName } from "../enums";
 import { ChannelState } from "../saveables";
 
 export class ResetTracks implements Command {
@@ -23,8 +25,7 @@ export class ResetTracks implements Command {
     );
     if (channelState === null) {
       await message.update({
-        content:
-          "⛔️ Cannot reset tracks for this channel. There is no generation data.",
+        content: `${ICONS[IconName.FAILURE]} Cannot reset tracks for this channel. There is no generation data.`,
       });
       return;
     }
@@ -33,7 +34,7 @@ export class ResetTracks implements Command {
     DataController.saveChannelState(channelState);
     // Send message
     await message.update({
-      content: "✅ Tracks have been reset for this channel.",
+      content: `${ICONS[IconName.SUCCESS]} Tracks have been reset for this channel.`,
     });
   }
 }

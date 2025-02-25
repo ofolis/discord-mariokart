@@ -1,3 +1,4 @@
+import { ICONS } from "../constants";
 import { DataController } from "../controllers";
 import {
   ChannelCommandMessage,
@@ -5,6 +6,7 @@ import {
   CommandOption,
   Discord,
 } from "../core";
+import { IconName } from "../enums";
 import { ChannelState } from "../saveables";
 
 export class ResetRacers implements Command {
@@ -27,7 +29,7 @@ export class ResetRacers implements Command {
     );
     if (channelState === null) {
       await message.update({
-        content: `⛔️ Cannot reset racers for **${Discord.formatUserNameString(message.user)}**. There is no channel generation data.`,
+        content: `${ICONS[IconName.FAILURE]} Cannot reset racers for **${Discord.formatUserNameString(message.user)}**. There is no channel generation data.`,
       });
       return;
     }
@@ -38,11 +40,11 @@ export class ResetRacers implements Command {
       // Save if changed
       DataController.saveChannelState(channelState);
       await message.update({
-        content: `✅ Racers have been reset for **${Discord.formatUserNameString(message.user)}**.`,
+        content: `${ICONS[IconName.SUCCESS]} Racers have been reset for **${Discord.formatUserNameString(message.user)}**.`,
       });
     } else {
       await message.update({
-        content: `⛔️ Cannot reset racers for **${Discord.formatUserNameString(message.user)}**. They have no generation data.`,
+        content: `${ICONS[IconName.FAILURE]} Cannot reset racers for **${Discord.formatUserNameString(message.user)}**. They have no generation data.`,
       });
     }
   }
