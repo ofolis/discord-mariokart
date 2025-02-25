@@ -1,6 +1,6 @@
 export enum KartType {
-  "ATV",
-  "KART",
-  "SPORT_BIKE",
-  "STANDARD_BIKE",
+  ATV = "atv",
+  KART = "kart",
+  SPORT_BIKE = "sportBike",
+  STANDARD_BIKE = "standardBike",
 }
