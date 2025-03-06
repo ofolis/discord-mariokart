@@ -32,6 +32,10 @@ export class GetRacer implements Command {
     if (channelState === null) {
       channelState = new ChannelState(message);
     }
+    // Create user if they don't exist
+    if (!channelState.userExists(message.user.id)) {
+      channelState.createUserState(message.user);
+    }
     // Choose character (wild or entity)
     let character: Character | null = null;
     if (Environment.random.die(100) !== 1) {

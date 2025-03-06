@@ -22,7 +22,7 @@ export class ChannelState implements Saveable {
       const message: ChannelCommandMessage = messageOrJson;
       this.channelId = message.channelId;
       // Create initial user state
-      this.__createUserState(message.user);
+      this.createUserState(message.user);
     } else {
       const json: Json = messageOrJson;
       this.__usedTracks = Utils.getJsonEntry(json, "usedTracks") as TrackName[];
@@ -39,6 +39,10 @@ export class ChannelState implements Saveable {
       );
       this.channelId = Utils.getJsonEntry(json, "channelId") as string;
     }
+  }
+
+  public createUserState(userOrPlayer: discordJs.User): void {
+    this.__userStates[userOrPlayer.id] = new UserState(userOrPlayer);
   }
 
   public getAvailableCharactersForUser(userId: string): CharacterName[] {
@@ -170,8 +174,8 @@ export class ChannelState implements Saveable {
     };
   }
 
-  private __createUserState(userOrPlayer: discordJs.User): void {
-    this.__userStates[userOrPlayer.id] = new UserState(userOrPlayer);
+  public userExists(userId: string): boolean {
+    return userId in this.__userStates;
   }
 
   private __getAvailableEntitiesForUser<T>(
